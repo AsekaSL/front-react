@@ -11,7 +11,7 @@ function User() {
     const [isSubmit, setIsSubmit] = useState(false);
 
     const getUser = () => {
-        axios.get('http://localhost:3001/users')
+        axios.get(process.env.REACT_APP_ENDPOINT + '/users')
             .then(response => {
                 setUsers(response.data);
                 setIsSubmit(false);
@@ -23,7 +23,7 @@ function User() {
 
     
     const addUser = (data) => {
-        axios.post('http://localhost:3001/createuser', data)
+        axios.post( process.env.REACT_APP_ENDPOINT + '/createuser', data)
             .then(response => {
                 getUser();
             })
@@ -33,7 +33,7 @@ function User() {
     };
 
     const updateUser = (data) => {
-        axios.put('http://localhost:3001/updateuser', data)
+        axios.put( process.env.REACT_APP_ENDPOINT + '/updateuser', data)
             .then(response => {
                 setIsSubmit(true);
                 getUser();
@@ -45,7 +45,7 @@ function User() {
     };
 
     const deleteUser = (data) => {
-        axios.delete(`http://localhost:3001/deleteuser?id=${data.id}`)
+        axios.delete( process.env.REACT_APP_ENDPOINT + `/deleteuser?id=${data.id}`)
             .then(response => {
                 getUser();
                 setIsEdit(false);
