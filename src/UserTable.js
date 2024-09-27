@@ -1,14 +1,24 @@
 
 
-function UserTable() {
+function UserTable({users, setSelected, setIsEdit, deleteUser}) {
 
     
 
  return(
     <div>
-        <p>
-            1. Saranga <button>Update</button> <button>Delete</button>
-        </p>
+        {
+            users.map(user => {
+                return(
+                    <p key={user.id}>
+                    {user.id}. {user.name} <button onClick={() => {
+                        setSelected({id: user.id, name: user.name});
+                        setIsEdit(true);
+                        }}>Update</button> <button onClick={() => deleteUser({id: user.id})}>Delete</button>
+                    </p>
+                );
+            })
+        }
+        
     </div>
  );
 }
